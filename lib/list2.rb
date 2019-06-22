@@ -33,14 +33,27 @@ def infinite_loop?(list)
 
   until h.nil?
     h = h.next_node
-    return false if h.nil?
-
-    h = h.next_node
-    t = t.next_node
-    return true if h == t
+    if h.nil?
+      return false
+    else
+      h = h.next_node
+      t = t.next_node
+      if h == t
+        return true
+      end
+    end
   end
-
   return false
+  # until h.nil?
+  #   h = h.next_node
+  #   return false if h.nil?
+
+  #   h = h.next_node
+  #   t = t.next_node
+  #   return true if h == t
+  # end
+
+  # return false
 end
 
 node1 = LinkedListNode.new(37)
@@ -59,6 +72,10 @@ puts " "
 puts "Infinite Loop: False"
 puts infinite_loop?(node3)
 puts " "
+
+node1 = LinkedListNode.new(37)
+node2 = LinkedListNode.new(99, node1)
+node3 = LinkedListNode.new(12, node2)
 
 puts "Infinite Loop: True"
 node1.next_node = node3
